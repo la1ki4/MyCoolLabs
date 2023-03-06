@@ -60,7 +60,7 @@ int main()
                 }
 
                 //Пробегаемся по всем участникам в списке
-                for (int i = 0; i < Participants.size(); i++)
+                for (unsigned short i = 0; i < Participants.size(); i++)
                 {
                     //Если такой участник найден, выводим его в консоле
                     if (Participants[i] == idParticipant)
@@ -90,7 +90,7 @@ int main()
     //Выводим копию списка
     std::cout << "Copied list: " << std::endl;
 
-    for(int i = 0; i < copyOfList.size(); i++)
+    for(unsigned short i = 0; i < copyOfList.size(); i++)
     {
         std::cout << copyOfList[i];
     }
