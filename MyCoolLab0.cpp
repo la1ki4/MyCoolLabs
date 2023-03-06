@@ -9,7 +9,9 @@
 
 int main()
 {
-    std::string path = "MOCK_DATA.csv";
+    setlocale(LC_ALL, "Rus");
+
+    std::string path = "C:/MyCoolProjects/MyCoolProject0/MOCK_DATA.csv";
 
     std::ifstream file(path);
 
@@ -28,7 +30,7 @@ int main()
             std::cin >> idParticipant;
             
             
-            int countOfParticipants = 0;
+            unsigned short countOfParticipants = 0;
 
             if (idParticipant > 0)
             {
@@ -46,54 +48,61 @@ int main()
                     {
                         break;
                     }
+
                     //Записываем участника в список
                     Participants.push_back(tmp);
 
-                    //считаем сколько всего участников есть
                     countOfParticipants++;
                 }
-
                 
-                if (idParticipant > countOfParticipants)
+                //Создаём копию списка участников соревнования
+                std::vector<ParticipantOfTheCompetition> copyOfList;
+                
+                //Переносим из оригинального списка участника в копию списка участников
+                copyOfList = Participants;
+                
+                //Выводим всех участников соревнования
+                std::cout << "Copied list: " << std::endl;
+
+                for(unsigned short i = 0; i < copyOfList.size(); i++)
                 {
-                    std::cout << "There is no participant with this ID!";
+                    std::cout << copyOfList[i];
                 }
 
-                //Пробегаемся по всем участникам в списке
-                for (unsigned short i = 0; i < Participants.size(); i++)
+                std::cout << "\n\n\n";
+                
+                //Проверяем если ID меньше или равен количеству участников
+                if(idParticipant <= countOfParticipants)
                 {
-                    //Если такой участник найден, выводим его в консоле
-                    if (Participants[i] == idParticipant)
+                    //Пробегаемся по всем участникам в списке
+                    for (unsigned short i = 0; i < Participants.size(); i++)
                     {
-                        std::cout << Participants[i];
-                        break;
+                        //Если такой участник найден, выводим его в консоле
+                        if (Participants[i] == idParticipant)
+                        {
+                            std::cout << "Participant with ID: " << idParticipant;
+                            std::cout << Participants[i];
+                            break;
+                        }
                     }
                 }
-
+                
+                //Если же ID участника больше, чем количество участников...
+                else if (idParticipant > countOfParticipants)
+                {
+                    std::cout << "There is no participant with ID: " << idParticipant;
+                }
             }
-
+            
+            //Если же ID участника имеет отрицательное значение...
             else if (idParticipant <= 0)
             {
-                std::cout << "This ID cannot exist!";
+                std::cout << "ID " << idParticipant << " cannot exist! Your ID has a negative value.";
             }
             
             
     }
     file.close();
-    
-    //Создаём копию списка типа ParticipantOfTheCompetition и присваиваем ему всё, что есть в Participants
-    std::vector<ParticipantOfTheCompetition> copyOfList;
-    copyOfList = Participants;
-
-    std::cout << "\n\n\n";
-    
-    //Выводим копию списка
-    std::cout << "Copied list: " << std::endl;
-
-    for(unsigned short i = 0; i < copyOfList.size(); i++)
-    {
-        std::cout << copyOfList[i];
-    }
 
     system("pause>nul");
     return 0;
