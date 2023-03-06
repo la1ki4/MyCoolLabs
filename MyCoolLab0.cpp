@@ -81,15 +81,21 @@ int main()
             
             
     }
+    file.close();
+    
+    //Создаём копию списка типа ParticipantOfTheCompetition и присваиваем ему всё, что есть в Participants
     std::vector<ParticipantOfTheCompetition> copyOfList;
     copyOfList = Participants;
 
     std::cout << "\n\n\n";
+    
+    //Выводим копию списка
     std::cout << "Copied list: " << std::endl;
-    std::cout << copyOfList[6];
 
-    file.close();
-
+    for(int i = 0; i < copyOfList.size(); i++)
+    {
+        std::cout << copyOfList[i];
+    }
 
     system("pause>nul");
     return 0;
