@@ -44,14 +44,14 @@ public:
         return this->day == firstDate.day && this->month == firstDate.month && this->year == firstDate.year;
     }
 
-    //прототип перегрузки оператора чтения из потока
+    //прототип перегрузки оператора записи в поток
     friend std::ostream& operator<<(std::ostream& out, const Date& date);
 
-    //Прототип перегрузки оператора записи в поток
+    //Прототип перегрузки оператора чтения из потока
     friend std::istream& operator>>(std::istream& in, Date& date);
 };
 
-//Реализация перегрузки оператора чтения из потока
+//Реализация перегрузки оператора записи в поток
 std::ostream& operator<<(std::ostream& out, const Date& date)
 {
     out << date.day << "/" << date.month << "/" << date.year;
@@ -59,7 +59,7 @@ std::ostream& operator<<(std::ostream& out, const Date& date)
     return out;
 }
 
-//Реализация перегрузки оператора записи в поток
+//Реализация перегрузки оператора чтения из потока
 std::istream& operator>>(std::istream& in, Date& date)
 {
     char delimeter;
