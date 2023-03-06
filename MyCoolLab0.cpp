@@ -9,9 +9,7 @@
 
 int main()
 {
-    setlocale(LC_ALL, "Rus");
-
-    std::string path = "C:/MyCoolProjects/MyCoolProject0/MOCK_DATA.csv";
+    std::string path = "MOCK_DATA.csv";
 
     std::ifstream file(path);
 
