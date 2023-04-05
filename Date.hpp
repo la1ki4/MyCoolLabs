@@ -1,69 +1,32 @@
+#ifndef _DATE_H_
+#define _DATE_H_
+
 #include <iostream>
+#include <string>
 
-struct Date
+class Date
 {
-
 private:
-    //Инициализируем поля day, month, year
-    int day;
-    int month;
-    int year;
+	unsigned short day;
+	unsigned short month;
+	unsigned short year;
 
 public:
+	Date() = default;
+	Date(const unsigned short&, const unsigned short&, const unsigned short&);
+	Date(const Date&);
 
-    //Инициализурем конструктор без параметров, чтобы в полях не лежал мусор
-    Date()
-    {
-        this->day = 0;
-        this->month = 0;
-        this->year = 0;
-    }
+	const Date& operator=(const Date&);
+	bool operator==(const Date&) const;
 
-
-    //Конструктор копирования
-    Date(const Date& dateParameters)
-    {
-        this->day = dateParameters.day;
-        this->month = dateParameters.month;
-        this->year = dateParameters.year;
-    }
-
-    //Оператор присваивания
-    Date& operator=(const Date& date)
-    {
-        this->day = date.day;
-        this->month = date.month;
-        this->year = date.year;
-
-        return *this;
-    }
-
-    //Оператор сравнения
-    bool operator==(const Date& firstDate)
-    {
-        return this->day == firstDate.day && this->month == firstDate.month && this->year == firstDate.year;
-    }
-
-    //прототип перегрузки оператора записи в поток
-    friend std::ostream& operator<<(std::ostream& out, const Date& date);
-
-    //Прототип перегрузки оператора чтения из потока
-    friend std::istream& operator>>(std::istream& in, Date& date);
+	std::string toString() const;
+	unsigned short Day() const;
+	unsigned short Month() const;
+	unsigned short Year() const;
 };
 
-//Реализация перегрузки оператора записи в поток
-std::ostream& operator<<(std::ostream& out, const Date& date)
-{
-    out << date.day << "/" << date.month << "/" << date.year;
+std::istream& operator>>(std::istream&, Date&);
+std::ostream& operator<<(std::ostream&, Date&);
 
-    return out;
-}
 
-//Реализация перегрузки оператора чтения из потока
-std::istream& operator>>(std::istream& in, Date& date)
-{
-    char delimeter;
-    in >> date.day >> delimeter >> date.month >> delimeter >> date.year;
-
-    return in;
-}
+#endif
